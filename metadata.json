@@ -1,0 +1,6 @@
+{
+  "name": "Urban Sports Matchmaker",
+  "description": "Frictionless matching and coordination platform for urban professionals and students to play outdoor sports and network in tech hubs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

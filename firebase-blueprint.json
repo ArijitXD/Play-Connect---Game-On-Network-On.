@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with sports preferences, availability, tech hub location, and professional info",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string" },
+        "companyOrSchool": { "type": "string" },
+        "hubCity": { "type": "string" },
+        "bio": { "type": "string" },
+        "sports": { "type": "array" },
+        "availability": { "type": "array" },
+        "skillRatings": { "type": "object" },
+        "networkingGoals": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "displayName", "email"]
+    },
+    "SportsSession": {
+      "title": "SportsSession",
+      "description": "An outdoor sports session / pickup match created by a user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "creatorId": { "type": "string" },
+        "creatorName": { "type": "string" },
+        "creatorCompany": { "type": "string" },
+        "sport": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "skillLevel": { "type": "string" },
+        "dateTime": { "type": "string" },
+        "locationName": { "type": "string" },
+        "address": { "type": "string" },
+        "city": { "type": "string" },
+        "maxParticipants": { "type": "number" },
+        "participantCount": { "type": "number" },
+        "participants": { "type": "array" },
+        "networkingFocus": { "type": "string" },
+        "courtDetails": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "creatorId", "sport", "title", "dateTime", "locationName"]
+    },
+    "SessionRsvp": {
+      "title": "SessionRsvp",
+      "description": "User RSVP and coordination for a sports session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userRole": { "type": "string" },
+        "status": { "type": "string" },
+        "skillLevel": { "type": "string" },
+        "note": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "sessionId", "userId", "userName", "status"]
+    },
+    "RoadmapItem": {
+      "title": "RoadmapItem",
+      "description": "Product roadmap milestone with feature status and community feedback",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "phase": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string" },
+        "category": { "type": "string" },
+        "votes": { "type": "number" },
+        "upvotedBy": { "type": "array" },
+        "targetQuarter": { "type": "string" }
+      },
+      "required": ["id", "phase", "title", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile collection"
+    },
+    "/sessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/SportsSession" },
+      "description": "Active and scheduled outdoor sports games/sessions"
+    },
+    "/sessions/{sessionId}/rsvps/{rsvpId}": {
+      "schema": { "$ref": "#/entities/SessionRsvp" },
+      "description": "RSVPs for a sports session"
+    },
+    "/roadmaps/{roadmapId}": {
+      "schema": { "$ref": "#/entities/RoadmapItem" },
+      "description": "Roadmap initiatives and community voting items"
+    }
+  }
+}
